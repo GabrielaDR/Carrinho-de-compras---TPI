@@ -2,6 +2,10 @@
   //avisando o PHP que vamos trabalhar com sessoes
   session_start();
 
+  if(!isset($_session['carrinho'])){
+      $_session['carrinho'] = array();
+  }
+
   //adicionando ao carrinho
   if(isset($_GET['adicionar'])) {
       $temp = array("produto" => "Celular Motorola",
@@ -24,7 +28,7 @@
 <head>
      <meta charset="utf-8"/>
      <title> Carrinho de comprar </title>
-     <link href="main.css" rel="stylesheet" type="text/css" />
+     <link href="css/estilos.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
    <div id="corpo">
@@ -41,7 +45,7 @@
         <tbody>
             <!-- Percorrendo o array de produtos com a 
                    estrutura for !-->
-            <?php for($i0; $i<=$total_produtos; $i++): ?>
+            <?php for($i=0; $i<=$total_produtos; $i++): ?>
             <tr>
                 <td><?= $carrinho[$i]['produto'] ?></td>
                 <td><?= $carrinho[$i]['qnt'] ?></td>
